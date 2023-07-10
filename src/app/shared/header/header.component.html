@@ -1,0 +1,21 @@
+<header [ngStyle]="{'background-color' : checkTransparency()}">
+    <div class="logo">
+        <img src="../../../assets/logos/logo.png" alt="App Logo">
+    </div>
+    <div class="menu">
+        <nav>
+            <ul class="menu__list">
+                <li class="menu__item"><a routerLink="/fr/main">Acceuil</a></li>
+                <li class="menu__item"><a routerLink="/fr/products">Consoles</a></li>
+                <li class="menu__item"><a>Jeux</a></li>
+                <li class="menu__item"><a>Abonnements</a></li>
+                <li class="menu__item" *ngIf='!isTransaprent'>
+                    <div class="panier">
+                        <div class="notif">3</div>
+                        <a><i class="bi bi-cart3"></i></a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,62 @@
+<section class="hero">
+    <h2>DECOUVEREZ NOTRE CATALOGUE DE PRODUITS</h2>
+</section>
+<section class="content">
+    <div class="content__sidebar">
+        <h4>Catalogue</h4>
+        <ul>
+            <li>
+                <input type="checkbox" id="arcade">
+                <label for="arcade">Arcade</label>
+            </li>
+            <li>
+                <input type="checkbox" id="sport">
+                <label for="sport">Sport</label>
+            </li>
+            <li>
+                <input type="checkbox" id="action">
+                <label for="action">Action</label>
+            </li>
+            <li>
+                <input type="checkbox" id="arcade">
+                <label for="arcade">Aventure</label>
+            </li>
+            <li>
+                <input type="checkbox" id="arcade">
+                <label for="arcade">Course</label>
+            </li>
+        </ul>
+        <h4>Marge de prix</h4>
+        <ul>
+            <li>
+                <label for="arcade" class="price-label">Prix Max</label><br>
+                <input type="text" id="arcade">
+                <span class="euro">&euro;</span>
+            </li>
+            <li>
+                <label for="sport" class="price-label">Prix Min</label><br>
+                <input type="text" id="sport">
+                <span class="euro">&euro;</span>
+            </li>
+        </ul>
+
+        <a class="recherche"><i class="bi bi-search"></i> Rechercher</a>
+
+    </div>
+    <div class="content__products">
+        <div class="recherche--input">
+          <input type="text" placeholder="Entrez des mots clés">
+          <a><i class="bi bi-search"></i></a>
+        </div>
+        <div class="content__products--items">
+            <div class="content__products--item" *ngFor="let el of products">
+                <img [src]="el.img" alt="product image">
+                <h4>{{el.nom}}</h4>
+                <h6>{{el.prix}} &euro;</h6>
+                <div class="btns">
+                    <a>Ajouter au panier</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

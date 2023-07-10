@@ -1,0 +1,71 @@
+h1{
+    text-align: center;
+    font-family: Montserrat;
+    background-color: rgb(94, 1, 99);
+    color : #ffff;
+    padding : 3rem 2rem;
+    transition : .4s all;
+    cursor: pointer;
+
+}
+h1:hover{
+    background-color: rgb(22, 1, 99);
+    transform: scale(1.2);
+}
+.input__container{
+    width :  100%;
+
+}
+.input__container:first-child{
+    margin-bottom: 2rem;
+}
+.form{
+
+    width : 40%;
+}
+.content{
+
+    width : 50%;
+}
+h2{
+    font-size: 1.6rem;
+    color :  rgb(94, 1, 99);
+}
+ul{
+    list-style: none;
+}
+li{
+    padding: 3rem 2rem;
+    border-radius: 30px;
+    box-shadow: 0 1rem 1.2rem rgba(0,0,0,.2);
+}
+li :last-child{
+margin-bottom: 1rem;
+}
+input,textarea{
+    display: block;
+    width : 100%;
+    border-radius: 50px;
+    border-color: rgb(94, 1, 99);
+    margin-top: 1rem;
+    padding : 1rem;
+}
+.container{
+    display: flex;
+    padding : 1rem 2rem;
+    width : 94vw;
+    justify-content: space-between;
+}
+label{
+    color: rgb(94, 1, 99);
+    font-family: Montserrat;
+}
+button{
+    background-color: rgb(94, 1, 99);
+    padding : .8rem 4rem;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    font-size: .9rem;
+    border-radius: 30px;
+    color : #ffff;
+}
