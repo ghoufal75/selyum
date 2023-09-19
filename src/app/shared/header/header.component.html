@@ -6,16 +6,89 @@
         <nav>
             <ul class="menu__list">
                 <li class="menu__item"><a routerLink="/fr/main">Acceuil</a></li>
-                <li class="menu__item"><a routerLink="/fr/products">Consoles</a></li>
-                <li class="menu__item"><a>Jeux</a></li>
-                <li class="menu__item"><a>Abonnements</a></li>
+                <li class="menu__item"><a routerLink="/fr/products/consoles">Consoles</a></li>
+                <li class="menu__item"><a routerLink="/fr/products/Jeux">Jeux</a></li>
+                <li class="menu__item"><a routerLink="/fr/products/abonnements">Abonnements</a></li>
                 <li class="menu__item" *ngIf='!isTransaprent'>
                     <div class="panier">
-                        <div class="notif">3</div>
-                        <a><i class="bi bi-cart3"></i></a>
+                        <div class="notif">{{panierItems&& panierItems.length}}</div>
+                        <a (click)="togglePanier()"#btnPanier><i class="bi bi-cart3"></i></a>
+                        <div class="panier__menu" #menu [@appear] *ngIf="isPanierShown">
+                            <div class="panier__menu__wrapper">
+                                <div *ngIf="panierItems && panierItems?.length==0"> <h6>Pas d'éléments jusqu'ici.</h6> </div>
+                                <div class="selectquantite" *ngFor="let el of panierItems">
+                                    <div class="selectquantite__product__img">
+                                        <img [src]="el.product.imgUrls[0]" alt="">
+                                    </div>
+                                    <div class="selectquantite__product__name">
+                                        <h5>{{el.product.nom}}</h5>
+                                    </div>
+                                    <div class="selectquantite__product__quantity">
+                                        <h6>{{el.quantity}}</h6>
+                                    </div>
+                                    <div>
+                                        <h6>{{el.product.prix*el.quantity}} &euro; </h6>
+                                    </div>
+                                </div>
+                                <div class="mt-3 text-end text-md "  *ngIf="panierItems.length>0">
+                                    <h5 style="font-weight : bold;">Total : {{getTotal()}} &euro;</h5>
+                                </div>
+                                <div class="mt-3" *ngIf="panierItems?.length && panierItems.length>0">
+                                    <button class="btn btn-success rounded-pill btn-sm"(click)="processCheckout(quantityForm)">Payer mes articles</button>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </li>
             </ul>
         </nav>
     </div>
 </header>
+
+
+<div class="alert alert-success" role="alert" *ngIf="success" [@appear]>
+    Payement validée avec succées.
+</div>
+
+<div class="modal modal-form" #modalCheckout>
+    <ng-template #quantityForm let-modal>
+        <div class="modal-header">
+            <h5 class="modal-title mt-0">Panier</h5>
+            <button
+              type="button"
+              class="btn-close"
+              (click)="modal.dismiss('Cross click')"
+              aria-hidden="true"
+            ></button>
+          </div>
+      <div class="modal-body">
+          <div class="" style="display : flex; flex-direction : column;">
+
+
+              <div class="mb-3">
+                <label for="numeroCarte">N&deg; CB</label>
+                <input type="number" class="form-control" name="numeroCarte" id="numeroCarte">
+              </div>
+              <div class="mb-3">
+                <label for="numeroCarte">Nom du porteur</label>
+                <input type="text" class="form-control" name="numeroCarte" id="numeroCarte">
+              </div>
+              <div class="mb-3">
+                <label for="numeroCarte">Date d'expiration</label>
+                <input type="number" class="form-control mb-2 w-25" name="numeroCarte" id="numeroCarte" placeholder="Année">
+                <input type="number" class="form-control mb-2 w-25" name="numeroCarte" id="numeroCarte" placeholder="Mois">
+              </div>
+              <div class="mb-3">
+                <label for="numeroCarte">Code de sécurité</label>
+                <input type="number" class="form-control" name="numeroCarte" id="numeroCarte" placeholder="Code de sécurité">
+              </div>
+          </div>
+
+          <div class="add--btn">
+              <button class="btn btn-success rounded-pill "(click)="fillForm()">Payer mes articles</button>
+          </div>
+      </div>
+    </ng-template>
+  </div>
+

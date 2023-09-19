@@ -1,0 +1,117 @@
+<!-- <app-loader *ngIf="isLoading"></app-loader> -->
+<div class="authContainer">
+
+    <div class="authContainer__content"[ngStyle]="{'background-color':isNightMode?'#000':'#fff'}">
+        <h2 class="primary-title">Authenticate to continue<br></h2>
+        <hr [ngStyle]="{'background-image':isNightMode?'linear-gradient(to right,#000,#FF005B)':'linear-gradient(to right,#fff,#FF005B)'}">
+        <div class="login__form">
+            <div class="alert alert-danger" role="alert" *ngIf="errorRes!=''">
+                {{errorRes}}
+            </div>
+            <div class="alert alert-success" role="alert"*ngIf="success!=''">
+                {{success}}
+            </div>
+            <div *ngIf="!isSignUp">
+                <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                    <div class="input-container">
+                        <input type="email" [ngClass]="{'is-invalid':loginForm.get('email')?.touched &&  loginForm.get('email')?.errors?.required || loginForm.get('email')?.errors?.email }" formControlName="email" class="form-control" placeholder="Email">
+                        <div id="invalidCheck3Feedback" class="invalid-feedback" *ngIf="loginForm.get('email')?.touched &&  loginForm.get('email')?.errors?.email">
+                            You should enter a valid Email.
+                        </div>
+                        <div id="invalidCheck3Feedback" class="invalid-feedback"*ngIf="loginForm.get('email')?.touched &&  loginForm.get('email')?.errors?.required">
+                            This field is required.
+                        </div>
+                     </div>
+                    <div class="input-container">
+                        <input type="password" formControlName="password"[ngClass]="{'is-invalid':loginForm.get('password')?.touched &&  loginForm.get('password')?.errors?.required}" class="form-control" id="password" placeholder="Password">
+                        <div id="invalidCheck3Feedback" class="invalid-feedback" *ngIf="loginForm.get('password')?.touched &&  loginForm.get('password')?.errors?.required">
+                            This field is required.
+                          </div>
+                        <a class="forgot-password">Forgot your password ?</a>
+                    </div>
+                    <button class="submit-button" [disabled]="loginForm.invalid">Submit</button>
+                </form>
+            </div>
+
+            <div *ngIf="isSignUp">
+                <form [formGroup]="signUpForm"(ngSubmit)="onSignUp()">
+                    <div class="input-container">
+                        <input type="text" formControlName="fullName" [ngClass]="{'is-invalid':signUpForm.get('fullName')?.touched && signUpForm.get('fullName')?.errors?.required}" class="form-control" placeholder="Full Name">
+                        <div id="invalidCheck3Feedback" class="invalid-feedback" *ngIf="signUpForm.get('fullName')?.touched && signUpForm.get('fullName')?.errors?.required">
+                            This field is required.
+                          </div>
+                     </div>
+                     <div class="input-container">
+                        <input type="email" formControlName="adresse" [ngClass]="{'is-invalid':signUpForm.get('adresse')?.touched && signUpForm.get('adresse')?.errors?.required || signUpForm.get('adresse')?.errors?.email}" class="form-control"  placeholder="Adresse">
+                        <div id="invalidCheck3Feedback" class="invalid-feedback" *ngIf="signUpForm.get('adresse')?.touched && signUpForm.get('adresse')?.errors?.required">
+                            This field is required.
+                          </div>
+                          <div id="invalidCheck3Feedback" class="invalid-feedback" *ngIf="signUpForm.get('adresse')?.touched && signUpForm.get('adresse')?.errors?.email">
+                            Please enter a valid email.
+                          </div>
+                    </div>
+
+                    <div class="input-container">
+                        <input type="number" formControlName="phoneNumber" [ngClass]="{'is-invalid':signUpForm.get('phoneNumber')?.touched && signUpForm.get('phoneNumber')?.errors?.required || signUpForm.get('phoneNumber')?.errors?.min || signUpForm.get('phoneNumber')?.errors?.max }" class="form-control"  placeholder="phoneNumber number">
+                        <div id="invalidCheck3Feedback" class="invalid-feedback" *ngIf="loginForm.get('phoneNumber')?.touched &&  loginForm.get('phoneNumber')?.errors?.required">
+                            This field is required.
+                          </div>
+                          <div id="invalidCheck3Feedback" class="invalid-feedback" *ngIf="loginForm.get('phoneNumber')?.touched &&  loginForm.get('phoneNumber')?.errors?.min || loginForm.get('phoneNumber')?.errors?.max">
+                            This phoneNumber number should have a length of 10 digits.
+                          </div>
+                    </div>
+                    <div class="input-container">
+                        <input type="email" formControlName="email" [ngClass]="{'is-invalid':signUpForm.get('email')?.touched && signUpForm.get('email')?.errors?.required || signUpForm.get('email')?.errors?.email}" class="form-control"  placeholder="Email">
+                        <div id="invalidCheck3Feedback" class="invalid-feedback" *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.errors?.required">
+                            This field is required.
+                          </div>
+                          <div id="invalidCheck3Feedback" class="invalid-feedback" *ngIf="signUpForm.get('email')?.touched && signUpForm.get('email')?.errors?.email">
+                            Please enter a valid email.
+                          </div>
+                    </div>
+                    <div class="input-container">
+                        <input type="password" formControlName="password"  class="form-control"  placeholder="Password"[ngClass]="{'is-invalid':signUpForm.get('password')?.touched && signUpForm.get('password')?.errors?.required }">
+                        <div id="invalidCheck3Feedback" class="invalid-feedback" *ngIf=" signUpForm.get('password')?.touched &&  signUpForm.get('password')?.errors?.required">
+                            This field is required.
+                          </div>
+                    </div>
+                    <div class="input-container "style="margin-bottom : 4rem;">
+                        <input type="password" formControlName="confirmation"[ngClass]="{'is-invalid':signUpForm.get('confirmation')?.touched && (signUpForm.get('confirmation')?.errors?.required || signUpForm.get('confirmation')?.errors?.notMatched)}" class="form-control"  placeholder="Confirm your password">
+                        <div id="invalidCheck3Feedback" class="invalid-feedback" *ngIf="signUpForm.get('confirmation')?.touched &&  signUpForm.get('confirmation')?.errors?.required">
+                            This field is required.
+                          </div>
+                          <div id="invalidCheck3Feedback" class="invalid-feedback" *ngIf="signUpForm.get('confirmation')?.touched &&  signUpForm.get('confirmation')?.errors?.notMatched">
+                            Passwords shoould match.
+                          </div>
+                    </div>
+                    <button class="submit-button"[disabled]="signUpForm.invalid">Submit</button>
+                </form>
+            </div>
+
+
+            <div class="no-account">
+                <span class="no-account__content" *ngIf="!isSignUp" [ngStyle]="{'color':isNightMode?'#fff':'#000'}">Don't have an account ? <a class="create-account" (click)=toggleIsSignUp()> Create one now.</a></span>
+                <span class="no-account__content"*ngIf="isSignUp" [ngStyle]="{'color':isNightMode?'#fff':'#000'}"><a class="create-account" (click)=toggleIsSignUp()> Login</a></span>
+            </div>
+
+        </div>
+        <div class="continue__using" *ngIf="!isSignUp">
+            <div></div>
+            <div><h3 [ngStyle]="{'color':isNightMode?'#fff':'#000'}">OR</h3></div>
+            <div></div>
+        </div>
+        <div class="oauth__buttons" *ngIf="!isSignUp">
+            <!-- <button><i class="bi bi-apple"></i> <span class="button-text">Apple</span></button> -->
+            <button><i class="bi bi-facebook"></i><span class="button-text"> Facebook</span></button>
+            <button><i class="bi bi-google"></i><span class="button-text"> Google</span></button>
+        </div>
+    </div>
+    <div class="authContainer__img"></div>
+</div>
+<div class="toggler">
+     <button (click)="toggleNightMode()">
+        <i class="bi bi-moon"*ngIf="!isNightMode"></i>
+        <i class="bi bi-moon-fill"*ngIf="isNightMode"></i>
+
+     </button>
+</div>

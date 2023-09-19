@@ -1,0 +1,74 @@
+.wrapper{
+    position: relative;
+
+    .sideBar{
+
+        position: fixed;
+        top : 0;
+        left: 0;
+        height: 100vh;
+        z-index :900;
+
+
+    }
+    .content{
+
+        position: absolute;
+        top : 0;
+        z-index : 2;
+        height: 93vh;
+
+
+    }
+}
+.overlay{
+    position: absolute;
+    width : 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.6);
+    display: none;
+    z-index: 800;
+
+}
+
+@media screen and (max-width : 1232px) {
+    .sideBar{
+        width : 18vw !important;
+        position: absolute;
+        top : 0;
+        left: 0;
+        z-index : 3;
+
+    }
+}
+
+@media screen and (max-width : 864px) {
+    .sideBar{
+        width : 23vw !important;
+    }
+}
+
+
+@media screen and (max-width : 663px) {
+    .sideBar{
+        width : 30vw !important;
+    }
+}
+
+@media screen and (max-width : 694px) {
+    .overlay{
+        display: block;
+    }
+}
+@media screen and (max-width : 451px) {
+    .sideBar{
+        width : 38vw !important;
+    }
+}
+
+
+@media screen and (max-width :360px) {
+    .sideBar{
+        width : 42vw !important;
+    }
+}

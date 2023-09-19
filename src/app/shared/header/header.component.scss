@@ -32,9 +32,9 @@ header{
                 width : 2rem;
                 height : 2rem;
                 .notif{
-                    width : 1rem;
-                    height : 1rem;
-                    padding: .1rem;
+                    width : 1.2rem;
+                    height : 1.2rem;
+                    padding-top: -.1rem;
                     background-color: red;
                     color : #ffff;
                     text-align: center;
@@ -43,6 +43,34 @@ header{
                     right : 0;
                     font-size: .8rem;
                     border-radius: 30px;
+                }
+                &__menu{
+                    width : 19em;
+                    height : 14rem;
+                    border-radius: 20px;
+                    padding : 1rem 1rem;
+                    position: absolute;
+                    box-shadow: 0 1rem 1.2rem rgba(0,0,0,.2);
+                    top : 120%;
+                    right : 40%;
+                    background-color: rgba(255, 255, 255, 0.97);
+                    z-index : 90;
+                    &__wrapper{
+                        overflow-y: scroll;
+                        height : 12rem;
+                        width : auto;
+                        padding : 0 1rem;
+                    &::-webkit-scrollbar {
+                        width: 8px;
+                        background-color: #f0f0f0;
+                        border-radius: 15px;
+                    }
+                    &::-webkit-scrollbar-thumb{
+                      background-color: #FF005B;
+                      border-radius: 15px;
+                    }
+                    }
+
                 }
                 a{
                     i{
@@ -54,3 +82,50 @@ header{
         }
     }
 }
+
+.selectquantite{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:not(:first-child){
+        margin-top: 2rem;
+    }
+    &__product{
+        &__img{
+            width : 3rem;
+            height: 3rem;
+            img{
+                width : 100%;
+            }
+
+        }
+        &__name{
+
+            h5{
+                font-size: 1.1rem;
+            }
+        }
+        &__quantity{
+            width : 9%;
+            input{
+                display: inline-block;
+                width : 100%;
+            }
+
+        }
+
+    }
+
+
+
+}
+
+.alert{
+    border-radius: 30px !important;
+    position: absolute !important;
+    bottom: 1%;
+    right : .5%;
+    z-index: 10000;
+}
+

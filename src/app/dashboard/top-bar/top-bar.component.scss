@@ -1,0 +1,88 @@
+@import "../../../assets/scss/variables";
+.topBar{
+    background-color: $color-light;
+    padding: .62rem 1.86rem;
+    height : 7vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    ul{
+        list-style: none;
+        display: flex;
+        li{
+            &:not(:last-child){
+                margin-right: 1.86rem;
+            }
+            a{
+                cursor: pointer;
+                width: auto;
+                display: inline-block;
+                i{
+                    font-size: 1rem;
+                    color : rgb(133, 133, 133);
+                }
+                &:hover>i{
+                    color : $color-primary-darken;
+                }
+            }
+            .nav-button{
+                &__wrapper{
+                    position : relative;
+
+                }
+                &__menu{
+                    width : 15.5rem;
+                    height : 11.16rem;
+                    position : absolute;
+                    bottom : -11.78rem;
+                    left : -14.26rem;
+                    background-color: #ffff;
+                    box-shadow: 0 .62rem .62rem rgba(0,0,0,.1);
+                    border-radius: 10px;
+                    z-index : 9999999;
+                    &--3{
+                        height : 7.44rem;
+                        bottom : -8.06rem;
+                        width : 11.78rem;
+                        left : -10.54rem;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+.settings{
+    &__menu{
+        padding: .62rem 0rem !important;
+        display: block !important;
+    }
+    &__item{
+        padding: .62rem 1.24rem;
+        transition : all .4s;
+        cursor: pointer;
+
+    }
+    &__link{
+        display: flex;
+        width : 100%;
+        &:hover > h5{
+            color : $color-primary;
+        }
+        h5{
+          font-size: .68rem;
+            i{
+                font-size: .76rem;
+            }
+        transition: all .3s;
+
+        }
+        &__text{
+            margin-top: .31rem;
+            margin-left: 1.11rem;
+        }
+    }
+}
+
+

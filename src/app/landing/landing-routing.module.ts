@@ -6,7 +6,7 @@ import { MainComponent } from "./main/main.component";
 const routes : Routes = [
     {path : "",component : LandingComponent,children:[
         {path : "main",loadChildren : () => import('./main/main.module').then(m=>m.LandingModule)},
-        {path : "products",loadChildren : () => import('./products/products.module').then(m=>m.ProductsModule)},
+        {path : "products/:type",loadChildren : () => import('./products/products.module').then(m=>m.ProductsModule)},
         {path : "",redirectTo : 'main',pathMatch : 'full'},
     ]}
 ]

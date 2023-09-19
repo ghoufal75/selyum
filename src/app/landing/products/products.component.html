@@ -1,46 +1,37 @@
+<app-loader *ngIf="isLoading"></app-loader>
 <section class="hero">
     <h2>DECOUVEREZ NOTRE CATALOGUE DE PRODUITS</h2>
 </section>
 <section class="content">
     <div class="content__sidebar">
-        <h4>Catalogue</h4>
+        <h4>Catégorie</h4>
         <ul>
             <li>
-                <input type="checkbox" id="arcade">
-                <label for="arcade">Arcade</label>
+                <form [formGroup]="categorieForm" (change)="searchProducts()">
+                    <div *ngFor="let cat of categorieList">
+                        <input type="radio" name="categorie" id="arcade" formControlName="categorie" [value]="cat._id">
+                        <label for="arcade">{{cat.nom}}</label><br>
+                    </div>
+                </form>
+
             </li>
-            <li>
-                <input type="checkbox" id="sport">
-                <label for="sport">Sport</label>
-            </li>
-            <li>
-                <input type="checkbox" id="action">
-                <label for="action">Action</label>
-            </li>
-            <li>
-                <input type="checkbox" id="arcade">
-                <label for="arcade">Aventure</label>
-            </li>
-            <li>
-                <input type="checkbox" id="arcade">
-                <label for="arcade">Course</label>
-            </li>
+
         </ul>
-        <h4>Marge de prix</h4>
+        <h4 class="marge">Marge de prix</h4>
         <ul>
             <li>
                 <label for="arcade" class="price-label">Prix Max</label><br>
-                <input type="text" id="arcade">
+                <input type="text" id="arcade"name = "priceMax"[(ngModel)]="priceMax">
                 <span class="euro">&euro;</span>
             </li>
             <li>
                 <label for="sport" class="price-label">Prix Min</label><br>
-                <input type="text" id="sport">
+                <input type="text" id="sport"name = "priceMin"[(ngModel)]="priceMin">
                 <span class="euro">&euro;</span>
             </li>
         </ul>
 
-        <a class="recherche"><i class="bi bi-search"></i> Rechercher</a>
+        <a class="recherche"(click)="getProjectsByPrice()"><i class="bi bi-search"></i> Rechercher</a>
 
     </div>
     <div class="content__products">
@@ -50,13 +41,57 @@
         </div>
         <div class="content__products--items">
             <div class="content__products--item" *ngFor="let el of products">
-                <img [src]="el.img" alt="product image">
+                <img [src]="el.imgUrls[0]" alt="product image">
                 <h4>{{el.nom}}</h4>
                 <h6>{{el.prix}} &euro;</h6>
                 <div class="btns">
-                    <a>Ajouter au panier</a>
+                    <a (click)="pickQuantity(quantityForm,el)">Ajouter au panier</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+  <div class="modal modal-form" #panierModal>
+  <ng-template #quantityForm let-modal>
+      <div class="modal-header">
+          <h5 class="modal-title mt-0">Panier</h5>
+          <button
+            type="button"
+            class="btn-close"
+            (click)="modal.dismiss('Cross click')"
+            aria-hidden="true"
+          ></button>
+        </div>
+    <div class="modal-body">
+        <div class="selectquantite" *ngFor="let el of panierItems;let i = index;">
+            <div class="selectquantite__product__img">
+                <img [src]="el.product.imgUrls[0]" alt="">
+            </div>
+            <div class="selectquantite__product__name">
+                <h5>{{el.product.nom}}</h5>
+            </div>
+            <div class="selectquantite__product__quantity">
+                <input type="number" [(ngModel)]="el.quantity" name="quantityToAddToPanier">
+            </div>
+            <div>
+                <h6>{{el.product.prix*el.quantity}} &euro; </h6>
+            </div>
+            <div class="ms-2">
+                <button class="btn btn-danger"(click)="removeItem(i)"><i class="bi bi-x"></i></button>
+            </div>
+        </div>
+        <div class="mt-3 text-end text-md " >
+            <h5 style="font-weight : bold;">Total : {{getTotal()}} &euro;</h5>
+        </div>
+
+        <div class="add--btn">
+
+            <button class="btn btn-primary  rounded-pill me-3"(click)="modal.dismiss('Cross click')">Continuer mes achats</button>
+            <button class="btn btn-success rounded-pill ">Payer mes articles</button>
+        </div>
+    </div>
+  </ng-template>
+</div>
+
+

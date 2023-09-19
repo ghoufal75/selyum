@@ -1,0 +1,253 @@
+@import "../../assets/scss/variables" ;
+.authContainer{
+    padding: 0;
+    margin: 0;
+    height : 100vh;
+    display: flex;
+    box-sizing: border-box;
+    &__img{
+        flex : 7;
+        background-image: url("../../assets/images/auth-img.jpg");
+        background-size: cover;
+        background-position: center;
+        // border-radius: 0 15% 15% 0;
+
+    }
+    &__content{
+        flex : 7;
+        padding : 5rem 1.875rem;
+        background-color : #ffff;
+        hr{
+            width : 52%;
+            position: relative;
+            top : .375rem;
+            left : 25% !important;
+            border: none;
+            height: 8px;
+
+            border-radius : 30px;
+            // margin-bottom: 1rem;
+            // transform: translateX(50%);
+        }
+
+        .login__form{
+            width : 60%;
+            margin : auto;
+            margin-top: 6rem;
+            .alert{
+                font-size: .8125rem !important;
+                font-family: Montserrat !important;
+                margin-bottom: .93rem;
+            }
+            .input-container{
+                &:not(:last-child){
+                    margin-bottom : 1.86rem;
+                }
+                .forgot-password{
+                    display:block;
+                    text-align: end;
+                    margin-top: .93rem;
+                    font-family: Montserrat;
+                    font-size: .74rem;
+                    color : $color-primary-darken;
+                    cursor: pointer;
+
+                }
+            }
+            input{
+                height : 3.12rem;
+                border-radius: 100px;
+                padding-left : 1.24rem;
+                background-color: transparent;
+                width : 100%;
+                font-size: .99rem !important;
+                border-color: $color-primary-darken;
+                color : $color-primary-darken;
+                &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                    color: $color-primary-darken;
+                    opacity: 1; /* Firefox */
+                  }
+
+            }
+            .submit-button{
+                display: block;
+                width : 55%;
+                border-radius: 50px;
+                margin : auto;
+                background-color: $color-primary-darken;
+                padding: .62rem 1.24rem;
+                border : none;
+                color : $color-light;
+                text-transform: uppercase;
+                text-align: center;
+                font-size: .87rem;
+                font-family: "Montserrat Bold";
+                font-weight: 1000;
+                margin-top: 1.86rem;
+                &:disabled{
+                    background-color: lighten($color-primary, $amount: 25);
+                }
+            }
+        .no-account{
+            font-size: 1.25rem;
+            text-align: center;
+            margin-top: .93rem;
+            &__content{
+                font-size: .744rem;
+                font-family: Montserrat;
+                font-weight: Bold;
+            }
+            .create-account{
+                color: $color-primary-darken;
+                font-size: .744rem;
+                cursor: pointer;
+            }
+        }
+        }
+        .continue__using{
+            width : 40%;
+            margin-top: 1.86rem !important;
+            display: flex;
+            justify-content: center;
+            margin: auto;
+
+            div{
+              width : auto;
+              text-align: center;
+              font-weight: 700 !important;
+              &:first-child,&:last-child{
+                width : 30%;
+                margin: 0 1.24rem;
+                margin-bottom: .80rem !important;
+                border-bottom: 1px solid $color-primary-darken;
+              }
+            }
+        }
+        .oauth__buttons{
+            display: flex;
+            flex-direction : column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1.86rem;
+            button{
+                display: block;
+                width : 37%;
+                border-radius: 50px;
+                margin : auto;
+                background-color: $color-primary-darken;
+                padding: .43rem 0rem;
+                border : none;
+                color : $color-light;
+                text-transform: uppercase;
+                text-align: center;
+                font-size: .86rem;
+                font-family: "Montserrat Bold";
+                font-weight: 1000;
+                display: flex;
+                background-color: #3b5998;
+                &:first-child{
+                    // background-color: gray;
+                }
+                &:last-child{
+                    background-color: rgb(211, 34, 34);
+                }
+
+                .button-text{
+                 display: block;
+                 font-size: .86rem;
+                 padding-top: .31rem;
+                 text-align: start;
+
+                 width: 60% !important;
+
+                }
+                .bi{
+                    width: 40% !important;
+                    display: block;
+                    font-size: 1.24rem;
+                    text-align: start;
+                    padding-left: .93rem !important;
+
+
+                }
+                &:not(:last-child){
+                    margin-bottom: 1.24rem;
+                }
+
+
+            }
+        }
+
+
+    }
+}
+.toggler{
+    position: absolute;
+    top : 2%;
+    right : 2%;
+    button{
+        background-color: transparent;
+        border : none;
+        .bi{
+          font-size: 1.24rem;
+          color:$color-primary-darken;
+        }
+    }
+}
+.primary-title{
+    font-size: 1.6rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Montserrat Medium";
+    color : $color-primary;
+}
+.invalid-feedback{
+    font-size: .744rem !important;
+    padding-left: 1.24rem !important;
+}
+@media screen  and (max-width : 920px){
+    .login__form{
+        width : 80% !important;
+    }
+    .authContainer__content{
+        padding : 8rem 2rem;
+    }
+    .oauth__buttons{
+        button{
+            width : 45% !important;
+        }
+    }
+}
+@media screen  and (max-width : 700px){
+    .authContainer{
+        &__img{
+            flex : 5;
+        }
+        &__content{
+            flex : 7;
+        }
+    }
+    .login__form{
+        width : 90% !important;
+    }
+    .authContainer__content{
+        padding : 8rem 2rem;
+    }
+    .oauth__buttons{
+        button{
+            width : 55% !important;
+        }
+    }
+}
+@media screen and (max-width : 530px) {
+    .authContainer{
+        flex-direction: column-reverse;
+        &__img{
+            flex : 6;
+        }
+        &__content{
+            flex : 6;
+        }
+    }
+
+}

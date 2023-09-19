@@ -1,0 +1,40 @@
+<div class="wrapper">
+    <h2>Mon activité</h2>
+    <div class="row">
+        <div class="col col-1">
+            <apx-chart
+            [series]="chartOptions.series!"
+            [chart]="chartOptions.chart!"
+            [xaxis]="chartOptions.xaxis!"
+            [dataLabels]="chartOptions.dataLabels!"
+            [grid]="chartOptions.grid!"
+            [stroke]="chartOptions.stroke!"
+            [title]="chartOptions.title!"
+          ></apx-chart>
+        </div>
+        <div class="col col-2">
+            <apx-chart
+
+            [series]="chartPieOptions.series!"
+            [chart]="chartPieOptions.chart!"
+            [labels]="chartPieOptions.labels!"
+            [responsive]="chartPieOptions.responsive!"
+          ></apx-chart>
+        </div>
+
+    </div>
+    <div class="bar">
+        <apx-chart
+        [series]="chartBarOptions.series!"
+        [chart]="chartBarOptions.chart!"
+        [dataLabels]="chartBarOptions.dataLabels!"
+        [plotOptions]="chartBarOptions.plotOptions!"
+        [yaxis]="chartBarOptions.yaxis!"
+        [legend]="chartBarOptions.legend!"
+        [fill]="chartBarOptions.fill!"
+        [stroke]="chartBarOptions.stroke!"
+        [tooltip]="chartBarOptions.tooltip!"
+        [xaxis]="chartBarOptions.xaxis!"
+      ></apx-chart>
+    </div>
+</div>

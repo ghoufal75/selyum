@@ -1,0 +1,27 @@
+@import "../../../assets/scss/variables";
+.wrapper{
+    overflow: hidden !important;
+    position: relative;
+    padding :1rem 8rem;
+    h2{
+        padding-left: 1rem;
+        border-left: 2px solid $color-primary;
+        color : $color-primary;
+        font-size : 2rem;
+        text-transform: uppercase;
+    }
+    .row{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 6rem;
+        align-items: center;
+        .col-1{
+            width : 50%;
+        }
+    }
+    .bar{
+        margin-top: 4rem;
+        width : 100%;
+    }
+
+}

@@ -1,6 +1,6 @@
 .hero{
-    width : 100%;
-    height : 30vh;
+    width : 100% !important;
+    height : 30vh !important;
     background-image: linear-gradient(to right, rgba(0,0,0,.4),rgba(0,0,0,.4)),url("../../../assets/Backgrounds/bg-products.png");
     margin-top: -1.2rem !important;
     background-position: bottom;
@@ -10,7 +10,7 @@
         color : #ffff;
         width : 100%;
         font-family: "MODERN WARFARE";
-        font-size: 2.5rem;
+        font-size: 2.5rem !important;
         top : 42%;
         text-align: center;
         margin: auto;
@@ -23,13 +23,15 @@
     &__sidebar{
         flex : 2;
         background-color: black;
-        padding: 2rem 1.5rem;
+        padding: 2rem 1.5rem !important;
         font-family: "Montserrat Regular";
+
         h4{
+          margin: 2rem 0rem;
 
             text-transform: uppercase;
             color : #FF005B;
-            font-size: 1.2rem;
+            font-size: 1.2rem !important;
 
         }
         ul{
@@ -40,7 +42,7 @@
                 label{
                     color : #ffff;
                     text-transform: uppercase;
-                    padding-left: 1rem;
+                    padding-left: 1rem !important;
                 }
                 .price-label{
                     padding: 0 !important;
@@ -54,52 +56,54 @@
             input[type=text]{
                 display: inline-block;
                 border-color: #FF005B;
+                width: 90%;
                 background-color: transparent;
-                border-radius: 20px;
-                margin-top: 1rem;
-                padding: .4rem .9rem;
+                border-radius: 20px !important;
+                margin-top: 1rem !important;
+                padding: .4rem .9rem !important;
                 color: #FF005B;
             }
             span{
                 color: #FF005B;
-                padding-left: .5rem;
+                padding-left: .5rem !important;
             }
             &:not(:last-child){
-                margin-bottom: 2rem;
+                margin-bottom: 2rem !important;
             }
             }
         }
         .recherche{
             display: inline-block;
+            text-decoration: none;
             background-color: #FF005B;
             color: #ffff;
             font-family: "Montserrat Regular" ;
             text-transform: uppercase;
-            padding: .8rem 2rem;
+            padding: .8rem 2rem !important;
             text-align: center;
-            font-size: .6rem;
-            border-radius: 30px;
+            font-size: .6rem !important;
+            border-radius: 30px !important;
             margin: auto;
             margin-top: 2rem !important;
             cursor: pointer;
             i{
                 color : #ffff;
-                padding-right: .8rem;
-                font-size: .8rem;
+                padding-right: .8rem !important;
+                font-size: .8rem !important;
             }
         }
     }
     &__products{
         flex : 10;
-        padding : 1.5rem 3rem;
+        padding : 1.5rem 3rem !important;
         .recherche--input{
             width: 20%;
             position : relative;
             border: 1px solid ;
             border-color: #FF005B;
-            padding : .2rem .8rem;
-            height : 2rem;
-            border-radius: 20px;
+            padding : .2rem .8rem !important;
+            height : 2rem !important;
+            border-radius: 20px !important;
             input[type=text]{
                 display: inline-block;
                 display: block;
@@ -109,8 +113,8 @@
                 top : 50%;
                 background-color: transparent;
                 border: none;
-                margin-top: 1rem;
-                padding: 0rem 0rem;
+                margin-top: .6rem !important;
+                padding: 0rem 0rem !important;
                 color: #FF005B;
                 width : 100%;
                 height : 100%;
@@ -118,6 +122,7 @@
                     font-family: "Montserrat Medium";
                     text-transform: uppercase;
                     color: #FF005B;
+                    font-size: .8rem;
                 }
                 &:focus{
                     outline : none !important;
@@ -141,24 +146,26 @@
         &--items{
             display: flex;
             justify-content: space-between;
-            margin-top: 4rem;
+            margin-top: 4rem !important;
             align-items: center;
             flex-wrap: wrap;
-            gap : 3rem;
+            gap : 3rem !important;
 
         }
         &--item{
-            width : 15%;
+            width : 20%;
             border: 1px solid #FF005B;
-            border-radius: 30px;
-            padding: 1rem 2rem;
-            height: 18rem;
-            box-shadow: 0 .9rem 1.2rem rgba(0,0,0,.04);
+            border-radius: 30px !important;
+            padding: 1rem 2rem !important;
+            height: 18rem !important;
+            box-shadow: 0 .9rem 1.2rem rgba(0,0,0,.04) !important;
             padding-bottom: 0 !important;
             position: relative;
             h6{
                 text-align: center;
-                font-size: .9rem;
+                font-size: .9rem !important;
+                margin-top: 1   rem;
+                margin-bottom: 1rem;
             }
             img{
                 display: block;
@@ -170,6 +177,8 @@
                 font-family: "Montserrat Medium";
                 color : #FF005B;
                 text-align: center;
+                font-size: 1rem !important;
+                padding-top: 2rem;
 
             }
             div{
@@ -180,11 +189,12 @@
                 left: 50%;
                 transform: translateX(-50%);
                 a{
-                    font-size: .8rem;
+                    cursor: pointer;
+                    font-size: .8rem !important;
                     background-color: #FF005B;
                     color: #ffff;
-                    border-radius: 30px;
-                    padding: .6rem .6rem;
+                    border-radius: 30px !important;
+                    padding: .6rem .6rem !important;
                 }
             }
 
@@ -193,3 +203,46 @@
 
     }
 }
+.selectquantite{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &:not(:first-child){
+        margin-top: 2rem;
+    }
+    &__product{
+        &__img{
+            width : 4rem;
+            height: 4rem;
+            img{
+                width : 100%;
+            }
+
+        }
+        &__name{
+
+            h5{
+                font-size: 1.3rem;
+            }
+        }
+        &__quantity{
+            width : 9%;
+            input{
+                display: inline-block;
+                width : 100%;
+            }
+
+        }
+
+    }
+
+
+
+}
+.add--btn{
+    margin-top: 2rem;
+    text-align: right;
+}
+
+
+

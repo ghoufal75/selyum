@@ -1,0 +1,52 @@
+<div class="topBar" [ngStyle]="{'padding-left':isShownSideBar?paddingValue:'1.24rem'}">
+    <div class="topBar__start">
+        <ul>
+            <li>
+                <a (click)="toggleBar()">
+                    <i class="bi bi-list"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="topBar__end">
+        <ul>
+            <li>
+
+                <div class="nav-button__wrapper">
+                    <a (click)="showMenu('messages')"><i class="bi bi-chat"></i></a>
+                    <div class="nav-button__menu nav-button__menu" *ngIf="shownMenu && shownMenu=='messages'"#menu [@appear]></div>
+                </div>
+
+
+            </li>
+            <li>
+                <div class="nav-button__wrapper">
+                    <a (click)="showMenu('notifications')"><i class="bi bi-bell"></i></a>
+                    <div class="nav-button__menu nav-button__menu"*ngIf="shownMenu && shownMenu=='notifications'"#menu [@appear]></div>
+                </div>
+            </li>
+            <li>
+                <div class="nav-button__wrapper">
+                    <a class="nav-button" (click)="showMenu('settings')"><i class="bi bi-gear"></i></a>
+                    <div class="nav-button__menu nav-button__menu--3"*ngIf="shownMenu && shownMenu=='settings'"#menu [@appear]>
+                        <ul class="settings__menu">
+                            <li class="settings__item">
+                                <div  class="settings__link">
+                                    <h5><i class="bi bi-person-circle"></i></h5>
+                                    <h5 class="settings__link__text">Profile settings</h5>
+                                </div>
+                            </li>
+                            <li class="settings__item">
+                                <div class="settings__link" (click)="signout()">
+                                    <h5><i class="bi bi-box-arrow-left"></i></h5>
+                                    <h5 class="settings__link__text">Disconnexion</h5>
+                                </div>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

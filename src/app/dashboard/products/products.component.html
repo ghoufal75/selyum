@@ -1,0 +1,230 @@
+<app-loader *ngIf="isLoading"></app-loader>
+<div class="wrapper">
+    <h2>Mes Produits</h2>
+    <div class="content">
+        <div class="new-container">
+            <a class="new-container__button" (click)="toggleCategorie()">Gérer les {{isCategorie?"Produits":"Catégories"}}</a>
+            <a class="new-container__button"(click)="isCategorie?showModal(categorieform):showModal(produitform)">{{isCategorie?"Nouvelle catégorie":"Nouveau Produit"}}</a>
+        </div>
+        <div class="table-responsive" *ngIf="!isCategorie">
+            <table class="table ">
+              <thead>
+                <tr>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Prix</th>
+                  <!-- <th scope="col">Specie</th>
+                  <th scope="col">Variety</th> -->
+                  <th scope="col">Stock</th>
+                  <th scope="col">Catgéorie</th>
+                  <th scope="col">Images</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let el of productList">
+                  <td>{{el.nom}}</td>
+                  <td>{{el.prix}}</td>
+                  <!-- <td>{{ element.specie }}</td>
+                  <td>{{ element.variety }}</td> -->
+                  <td>{{el.stock}}</td>
+                  <td>{{el.categorie.nom}}</td>
+                  <td>
+                    <div class="imgContainer">
+
+                      <div class="thumbnail"*ngFor="let img of el.imgUrls">
+                        <img [src]="img" class="thumbnail__img" alt="thumbnail">
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="action__buttons">
+
+
+                    <a class="action__button bg-warning"  (click)=" chooseProductToUpdate(el,produitform)">
+                        <span class="action__button__text">
+                        <i class="bi bi-pencil-fill"></i>
+                        Edit
+                    </span>
+                    </a>
+
+                    <a class="action__button bg-danger"(click)=" chooseElementToDelete(el,deleteModal)">
+                        <span class="action__button__text">
+                        <i class="bi bi-trash-fill"></i>
+                        Delete
+                    </span>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        <div class="table-responsive" *ngIf="isCategorie">
+        <table class="table ">
+            <thead>
+            <tr>
+                <th scope="col">Nom </th>
+                <th scope="col">Type</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr *ngFor="let el of categorieList">
+                <td>{{el.nom}}</td>
+                <td>{{el.type.nom}}</td>
+
+                <td class="action__buttons">
+
+
+
+                <a class="action__button bg-warning" (click)="chooseCategorieToUpdate(el,categorieform)">
+                    <span class="action__button__text">
+                    <i class="bi bi-pencil-fill"></i>
+                    Modifier
+                </span>
+                </a>
+                <a class="action__button bg-danger"(click)="chooseElementToDelete(el,deleteModal)">
+                    <span class="action__button__text">
+                    <i class="bi bi-trash-fill"></i>
+                    Supprimmer
+                </span>
+                </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-form">
+    <!-- Center Modal -->
+    <ng-template #categorieform let-modal>
+        <div class="modal-header">
+            <h5 class="modal-title mt-0">Nouvelle catégorie</h5>
+            <button
+              type="button"
+              class="btn-close"
+              (click)="modal.dismiss('Cross click')"
+              aria-hidden="true"
+            ></button>
+          </div>
+      <div class="modal-body">
+        <div class="categorieForm">
+
+            <form [formGroup]="categorieForm" (ngSubmit)="onSubmitCategorieForm()">
+                <div class="mb-3" >
+                  <label>Nom</label>
+                    <input type="text" class="form-control" formControlName = 'nom'>
+                </div>
+                <div class="mb-3">
+                  <label>Type</label>
+                    <select formControlName="idType" id="type" class="form-select">
+                        <option *ngFor="let el of produitTypes" [value]="el?._id">{{el.nom}}</option>
+                    </select>
+                </div>
+                <div style="text-align : right; margin-top : 2rem;">
+                    <button class="btn btn-secondary btn-md"   type="button" (click)="modal.dismiss('Cross click')">Cancel</button>
+                    <button class="btn btn-success btn-md ms-3">Submit</button>
+                </div>
+            </form>
+
+        </div>
+      </div>
+    </ng-template>
+</div>
+
+<div class="modal modal-form">
+  <!-- Center Modal -->
+  <ng-template #produitform let-modal>
+      <div class="modal-header">
+          <h5 class="modal-title mt-0">Nouveau Produit</h5>
+          <button
+            type="button"
+            class="btn-close"
+            (click)="modal.dismiss('Cross click')"
+            aria-hidden="true"
+          ></button>
+        </div>
+    <div class="modal-body">
+      <div class="produitForm" >
+
+          <form [formGroup]="produitForm" (ngSubmit)="onSubmitProduitForm()">
+              <div class="mb-3" >
+                <label>Nom</label>
+                  <input type="text" class="form-control" formControlName = 'nom'>
+              </div>
+              <div class="mb-3">
+                <label>Prix</label>
+                <input type="number" formControlName="prix" class="form-control">
+              </div>
+              <div class="mb-3">
+                  <label>stock</label>
+                  <input type="number" formControlName="stock" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label>Type</label>
+                <select class="form-select" formControlName="type">
+                  <option *ngFor="let el of produitTypes" [value]="el._id">{{el.nom}}</option>
+                </select>
+            </div>
+              <div class="mb-3">
+                <label>Categorie</label>
+                <select class="form-select" formControlName="categorie">
+                  <option *ngFor="let el of getSubCategories() " [value]="el._id">{{el.nom}}</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Images</label>
+                <input type="file" (change)="onUploadImages($event)" multiple class='form-control'>
+                <!-- <div formArrayName="imageUrls">
+                  <ng-container *ngFor="let cntrl of produitForm.get('imageUrls')!['controls'];let i = index;">
+                    <div style="display : flex;align-items: center;">
+                      <input  type="text" class="form-control mt-3" [formControlName]="i" >
+                      <button class="btn btn-danger ms-4 mt-3" type="button" (click)="deleteField(i)"style="display : inline-block;height : 2.5rem;"><i class="bi bi-x"></i></button>
+                    </div>
+
+                  </ng-container>
+                </div> -->
+                <div class="addButton"style="text-align : right;">
+                  <button class="btn btn-primary mt-3" type="button"(click)="addFormInput()">Add Image Url</button>
+
+                </div>
+
+
+          </div>
+              <div style="text-align : right; margin-top : 2rem;">
+                  <button class="btn btn-secondary btn-md" type="button"   (click)="modal.dismiss('Cross click')">Cancel</button>
+                  <button class="btn btn-success btn-md ms-3">Submit</button>
+              </div>
+          </form>
+
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<div class="modal modal-form">
+  <!-- Center Modal -->
+  <ng-template #deleteModal let-modal>
+      <div class="modal-header">
+          <h5 class="modal-title mt-0">Etes vous sure ?</h5>
+          <button
+            type="button"
+            class="btn-close"
+            (click)="modal.dismiss('Cross click')"
+            aria-hidden="true"
+          ></button>
+        </div>
+    <div class="modal-body">
+        <p>Etes vous sure de vouloir supprimer cet élément ?</p>
+    </div>
+    <div class="modal-footer">
+      <div style="text-align : right; margin-top : 2rem;">
+                    <button class="btn btn-secondary btn-md"    (click)="modal.dismiss('Cross click')">Cancel</button>
+                    <button class="btn btn-danger btn-md ms-3" (click)="isCategorie?deleteElement():deleteProduct()">Supprimmer</button>
+                </div>
+    </div>
+  </ng-template>
+</div>

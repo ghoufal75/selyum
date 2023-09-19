@@ -1,0 +1,14 @@
+<div class="wrapper">
+    <div class="sideBar"[ngStyle]="{'width':isShownSideBar?'13vw':'0'}">
+      <app-side-bar [role]="connectedRole"></app-side-bar>
+    </div>
+
+    <div class="content"[ngStyle]="{'width':isShownSideBar?'93vw':'100vw','margin-left':isShownSideBar?'-.62rem':'0','left': isShownSideBar?'7.5%':'0'}">
+      <div class="overlay" *ngIf="isShownSideBar"(click)='toggleBar()'></div>
+      <app-top-bar></app-top-bar>
+      <div class="routes">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+</div>
+

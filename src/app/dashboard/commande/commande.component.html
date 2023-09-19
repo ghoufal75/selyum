@@ -1,0 +1,67 @@
+
+<app-loader *ngIf="isLoading"></app-loader>
+<div class="wrapper">
+    <h2>Mes Commandes</h2>
+    <div class="content">
+        <div class="table-responsive">
+            <table class="table ">
+              <thead>
+                <tr>
+                  <th scope="col">Nom Client</th>
+                  <th scope="col">Email client</th>
+                  <!-- <th scope="col">Specie</th>
+                  <th scope="col">Variety</th> -->
+                  <th scope="col">Produits</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let el of commandeList;let i = index;">
+                  <td>{{el.client.fullName}}</td>
+                  <td>{{el.client.email}}</td>
+                  <td>
+                    <div *ngFor="let prod of el.produits" class="product-wrapper">
+                        <div class="product-wrapper__img">
+                          <img [src]="prod.product.imgUrls[0]" alt="product image">
+                        </div>
+                        <div class="product-wrapper__name">
+                            <h6>{{prod.product.nom}}</h6>
+                        </div>
+                        <div class="product-wrapper__quantity">
+                            <h6>Quantité : {{prod.quantity}}</h6>
+                        </div>
+                        <div class="product-wrapper__total">
+                            <h6>Total : {{prod.quantity * prod.product.prix}} &euro;</h6>
+                        </div>
+                    </div>
+                  </td>
+                  <td><h5>{{getTotal(i)}} &euro;</h5></td>
+                  <td>{{el.status}} </td>
+                  <td class="action__buttons">
+
+
+                    <a class="action__button bg-success">
+                        <span class="action__button__text">
+                        <i class="bi bi-check-lg" (click)="validateLivraison(el.client,el['_id'])"></i>
+                            Livrer
+                    </span>
+                    </a>
+
+                    <a class="action__button bg-danger">
+                        <span class="action__button__text">
+                        <i class="bi bi-trash-fill"></i>
+                        Delete
+                    </span>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    </div>
+</div>
+
+
